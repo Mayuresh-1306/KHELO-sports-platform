@@ -1,0 +1,18 @@
+# Dependencies (Root, Client, and Server)
+node_modules/
+*/node_modules/
+package-lock.json
+
+# Environment Variables
+.env
+.env.local
+*/.env
+
+# Build Outputs
+dist/
+build/
+
+# IDE & System Files
+.vscode/
+.idea/
+.DS_Store

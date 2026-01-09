@@ -1,0 +1,198 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px; /* Slightly taller for modern look */
+  background: rgba(15, 23, 42, 0.9); /* Dark background */
+  backdrop-filter: blur(12px); /* Blur effect */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-container {
+  width: 90%;
+  max-width: 1400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Logo Styling */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: white;
+}
+
+.logo-icon {
+  color: #f72585; /* Pink accent */
+  font-size: 1.8rem;
+  filter: drop-shadow(0 0 10px rgba(247, 37, 133, 0.5));
+}
+
+.logo-highlight {
+  background: linear-gradient(135deg, #4361ee, #f72585);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Navigation Links */
+.nav-menu {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.5rem 1.5rem;
+  border-radius: 50px; /* Pill shape container */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #94a3b8;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.3s;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: white;
+  text-shadow: 0 0 10px rgba(67, 97, 238, 0.5);
+}
+
+.nav-link .nav-icon {
+  font-size: 1.1rem;
+}
+
+/* --- BUTTON UPGRADES --- */
+
+.auth-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+/* "Sign Up" Button - Gradient Pill */
+.btn-primary {
+  background: linear-gradient(135deg, #4361ee 0%, #f72585 100%);
+  color: white;
+  padding: 0.7rem 1.8rem;
+  border-radius: 50px; /* Full rounded corners */
+  font-weight: 600;
+  border: none;
+  box-shadow: 0 4px 15px rgba(67, 97, 238, 0.4);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(67, 97, 238, 0.6);
+  filter: brightness(1.1);
+}
+
+/* "Sign In" Button - Glass Outline */
+.btn-outline {
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 0.6rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.btn-outline:hover {
+  border-color: #4361ee;
+  background: rgba(67, 97, 238, 0.1);
+  color: white;
+  box-shadow: 0 0 15px rgba(67, 97, 238, 0.2);
+}
+
+/* User Profile Section */
+.nav-user-section {
+  display: flex;
+  align-items: center;
+}
+
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.4rem 0.8rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #4361ee, #f72585);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+  font-size: 0.9rem;
+}
+
+.logout-button {
+  background: rgba(239, 68, 68, 0.1);
+  border: none;
+  color: #ef4444;
+  padding: 0.6rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+
+.logout-button:hover {
+  background: rgba(239, 68, 68, 0.2);
+  transform: scale(1.1);
+}
+
+/* Mobile Toggle */
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+/* Mobile Responsive */
+@media (max-width: 968px) {
+  .nav-menu {
+    display: none;
+  }
+  .auth-buttons, .user-menu {
+    display: none;
+  }
+  .mobile-menu-toggle {
+    display: block;
+  }
+}

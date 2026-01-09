@@ -1,0 +1,159 @@
+.player-card {
+  background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%); /* Modern Dark Gradient */
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.player-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+  border-color: var(--primary); /* Glow effect on hover */
+}
+
+.player-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.player-card-header {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background: rgba(255, 255, 255, 0.03); /* Glass effect */
+}
+
+.player-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid var(--primary);
+  overflow: hidden;
+  background: #0f172a;
+  box-shadow: 0 0 15px rgba(67, 97, 238, 0.3); /* Avatar glow */
+}
+
+.player-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #fff; /* Fix: White text for placeholder */
+}
+
+.player-rating {
+  background: rgba(251, 191, 36, 0.2);
+  padding: 0.4rem 0.8rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 700;
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.player-card-body {
+  padding: 1.5rem;
+  flex: 1;
+}
+
+.player-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+  color: #ffffff; /* FIX: Force Name to be White */
+  letter-spacing: -0.5px;
+}
+
+.player-age {
+  color: #94a3b8; /* Fix: Lighter grey for subtitle */
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.position-badge {
+  background: rgba(67, 97, 238, 0.2);
+  color: #60a5fa; /* Lighter blue text */
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(67, 97, 238, 0.3);
+}
+
+.player-sports {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.sport-badge {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #e2e8f0; /* Fix: Light text for sport names */
+  transition: 0.2s;
+}
+
+.sport-badge:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.player-card-footer {
+  padding: 1.2rem 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.achievements-count {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--secondary);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.view-profile {
+  font-size: 0.9rem;
+  color: var(--primary);
+  font-weight: 600;
+  opacity: 0.8;
+  transition: 0.2s;
+}
+
+.player-card:hover .view-profile {
+  opacity: 1;
+  transform: translateX(3px);
+}

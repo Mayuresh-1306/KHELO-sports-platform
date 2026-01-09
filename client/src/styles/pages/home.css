@@ -1,0 +1,300 @@
+/* client/src/styles/pages/home.css */
+
+/* --- 1. MAIN PAGE BACKGROUND --- */
+.home-page {
+  min-height: 100vh;
+  background-color: #0f172a; /* Deep Navy Background */
+  color: white;
+  overflow-x: hidden;
+}
+
+/* --- 2. HERO SECTION --- */
+.hero-section {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8rem 5% 4rem; /* Top padding for Navbar */
+  max-width: 1400px;
+  margin: 0 auto;
+  /* Premium Dark Gradient */
+  background: radial-gradient(circle at 80% 20%, rgba(67, 97, 238, 0.15) 0%, transparent 50%),
+              radial-gradient(circle at 20% 80%, rgba(247, 37, 133, 0.15) 0%, transparent 50%);
+}
+
+.hero-content {
+  flex: 1;
+  max-width: 650px;
+  z-index: 2;
+}
+
+/* --- 3. THE "KHELO" & TITLE STYLING (The Main Request) --- */
+.hero-title {
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+  letter-spacing: -1px;
+}
+
+/* Vibrant Gradient for "KHELO" */
+.gradient-text {
+  font-size: 5rem; /* Larger than surrounding text */
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #4cc9f0 0%, #4361ee 50%, #f72585 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  /* Glow Effect */
+  filter: drop-shadow(0 0 20px rgba(67, 97, 238, 0.4));
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  color: #94a3b8; /* Muted blue-grey */
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+  max-width: 90%;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1.5rem;
+}
+
+/* --- 4. FLOATING CARD & IMAGE --- */
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* The Glass Card Effect */
+.floating-card {
+  background: rgba(30, 41, 59, 0.7); /* Semi-transparent dark */
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2.5rem;
+  border-radius: 24px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 320px;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+.player-avatar-lg {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4361ee, #f72585);
+  margin-bottom: 1.5rem;
+  position: relative;
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem; /* Placeholder icon size */
+}
+
+/* Floating Trophy Icon */
+.avatar-badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: white;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.player-stats-preview {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1.5rem;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* --- 5. FEATURES SECTION --- */
+.features-section {
+  padding: 6rem 5%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  color: #94a3b8;
+  font-size: 1.1rem;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.feature-card {
+  background: #1e293b;
+  padding: 2rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  border-color: #4361ee;
+}
+
+.feature-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.feature-card p {
+  color: #94a3b8;
+  font-size: 0.95rem;
+}
+
+/* --- 6. CTA SECTION --- */
+.cta-section {
+  padding: 6rem 2rem;
+  text-align: center;
+  margin-top: 4rem;
+}
+
+/* Special Gradient Background Class */
+.bg-gradient-primary {
+  background: linear-gradient(135deg, #4361ee 0%, #f72585 100%);
+}
+
+.cta-content h2 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.cta-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2.5rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.cta-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+/* Custom Button Styles for CTA */
+.btn-white {
+  background: white;
+  color: #4361ee;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: 700;
+  transition: transform 0.2s;
+}
+
+.btn-white:hover {
+  transform: scale(1.05);
+}
+
+.btn-transparent {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: 700;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: background 0.2s;
+}
+
+.btn-transparent:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-section {
+    flex-direction: column;
+    text-align: center;
+    padding-top: 6rem;
+  }
+  
+  .hero-title {
+    font-size: 2.8rem;
+  }
+  
+  .gradient-text {
+    font-size: 3.5rem;
+  }
+  
+  .hero-actions {
+    justify-content: center;
+  }
+  
+  .hero-image {
+    margin-top: 4rem;
+  }
+}

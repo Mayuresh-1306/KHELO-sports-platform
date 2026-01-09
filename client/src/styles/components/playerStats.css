@@ -1,0 +1,403 @@
+/* client/src/styles/components/playerStats.css */
+.player-stats {
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Overview Stats */
+.stats-overview {
+  margin-bottom: 30px;
+}
+
+.stats-overview h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #212529;
+  margin: 0 0 20px 0;
+}
+
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+}
+
+.stat-card {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.stat-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.stat-icon.matches {
+  background: rgba(67, 97, 238, 0.1);
+  color: #4361ee;
+}
+
+.stat-icon.goals {
+  background: rgba(247, 37, 133, 0.1);
+  color: #f72585;
+}
+
+.stat-icon.assists {
+  background: rgba(76, 201, 240, 0.1);
+  color: #4cc9f0;
+}
+
+.stat-icon.rating {
+  background: rgba(243, 156, 18, 0.1);
+  color: #f39c12;
+}
+
+.stat-content h4 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #212529;
+  margin: 0 0 5px 0;
+  line-height: 1;
+}
+
+.stat-content p {
+  font-size: 0.9rem;
+  color: #6c757d;
+  margin: 0;
+}
+
+/* Skills Section */
+.skills-section {
+  margin-bottom: 30px;
+}
+
+.skills-section h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #212529;
+  margin: 0 0 20px 0;
+}
+
+.skills-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.skill-item {
+  padding: 10px 0;
+}
+
+.skill-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.skill-name {
+  font-weight: 500;
+  color: #495057;
+  font-size: 0.95rem;
+  text-transform: capitalize;
+}
+
+.skill-value {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.skill-bar {
+  height: 10px;
+  background: #e9ecef;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.skill-progress {
+  height: 100%;
+  border-radius: 5px;
+  transition: width 0.8s ease;
+}
+
+/* Matches Section */
+.matches-section {
+  margin-bottom: 30px;
+}
+
+.matches-section h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #212529;
+  margin: 0 0 20px 0;
+}
+
+.matches-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.match-item {
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 15px;
+  transition: all 0.3s ease;
+}
+
+.match-item:hover {
+  background: #e9ecef;
+}
+
+.match-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.match-teams {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  color: #495057;
+}
+
+.team-name {
+  font-weight: 500;
+}
+
+.vs {
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.match-result {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.result {
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+.result.win {
+  background: rgba(46, 204, 113, 0.1);
+  color: #2ecc71;
+}
+
+.result.draw {
+  background: rgba(243, 156, 18, 0.1);
+  color: #f39c12;
+}
+
+.result.loss {
+  background: rgba(249, 65, 68, 0.1);
+  color: #f94144;
+}
+
+.goals {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+/* Achievements Section */
+.achievements-section {
+  margin-bottom: 30px;
+}
+
+.achievements-section h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #212529;
+  margin: 0 0 20px 0;
+}
+
+.achievements-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.achievement-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.achievement-item:hover {
+  transform: translateX(5px);
+  background: #e9ecef;
+}
+
+.achievement-icon {
+  flex-shrink: 0;
+}
+
+.trophy {
+  font-size: 1.8rem;
+}
+
+.trophy.gold {
+  color: #f39c12;
+}
+
+.trophy.silver {
+  color: #95a5a6;
+}
+
+.trophy.bronze {
+  color: #cd7f32;
+}
+
+.achievement-info h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #212529;
+  margin: 0 0 5px 0;
+}
+
+.achievement-type {
+  font-size: 0.85rem;
+  color: #6c757d;
+  margin: 0;
+  text-transform: capitalize;
+}
+
+/* Performance Chart */
+.performance-section {
+  margin-bottom: 20px;
+}
+
+.performance-section h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #212529;
+  margin: 0 0 20px 0;
+}
+
+.performance-chart {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 25px;
+}
+
+.chart-placeholder {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  height: 200px;
+  margin-bottom: 20px;
+  position: relative;
+  padding-left: 40px;
+}
+
+.chart-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 15px;
+  flex: 1;
+  height: 100%;
+}
+
+.chart-bar {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.bar-fill {
+  width: 30px;
+  background: linear-gradient(to top, #4361ee, #7209b7);
+  border-radius: 6px 6px 0 0;
+  transition: height 0.8s ease;
+}
+
+.bar-label {
+  margin-top: 10px;
+  font-size: 0.8rem;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.chart-axis {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #6c757d;
+}
+
+.chart-note {
+  text-align: center;
+  color: #6c757d;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .player-stats {
+    padding: 20px;
+  }
+  
+  .overview-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .match-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .match-result {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .chart-placeholder {
+    height: 150px;
+  }
+  
+  .bar-fill {
+    width: 20px;
+  }
+}
