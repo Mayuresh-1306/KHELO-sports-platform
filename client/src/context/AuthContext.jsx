@@ -1,7 +1,9 @@
 // client/src/context/AuthContext.jsx
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import { toast } from 'react-toastify';
-import api from '../services/api';
+import axios from 'axios';
+// We don't need the toast here if you handle it in the components, 
+// but we'll keep the imports to prevent breaking changes if you use them.
+import { toast } from 'react-toastify'; 
 
 const AuthContext = createContext({});
 
@@ -9,73 +11,85 @@ export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [token, setToken] = useState(localStorage.getItem('token'));
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (token) {
-      fetchUser();
-    } else {
-      setLoading(false);
-    }
-  }, [token]);
+    // 1. FIX: Load user from LocalStorage on refresh
+    // This prevents the 404 error because we don't call the server for "/me"
+    const storedUser = localStorage.getItem('user');
+    const storedToken = localStorage.getItem('token');
 
-  const fetchUser = async () => {
-    try {
-      const response = await api.get('/api/auth/me', {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      setUser(response.data.user);
-    } catch (error) {
-      console.error('Error fetching user:', error);
-      localStorage.removeItem('token');
-      setToken(null);
-    } finally {
-      setLoading(false);
+    if (storedToken && storedUser) {
+      setToken(storedToken);
+      setUser(JSON.parse(storedUser));
     }
-  };
+    setLoading(false);
+  }, []);
 
+  // 2. LOGIN FUNCTION
   const login = async (email, password) => {
     try {
-      const response = await api.post('/api/auth/login', { email, password });
-      const { token, user } = response.data;
+      // Changed URL to match our Backend: /api/users/login
+      const response = await axios.post('/api/users/login', { email, password });
       
+      const { token, ...userData } = response.data; // Backend sends token and user data merged or separate
+      
+      // Save to storage
       localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify(userData)); // Save user details too
+      
       setToken(token);
-      setUser(user);
-      toast.success('Login successful!');
+      setUser(userData);
+      
       return { success: true };
     } catch (error) {
-      toast.error(error.response?.data?.message || 'Login failed');
-      return { success: false, error: error.response?.data?.message };
+      console.error("Login Error:", error);
+      const message = error.response?.data?.message || 'Login failed';
+      // toast.error(message); // Uncomment if you have ToastContainer set up
+      return { success: false, error: message };
     }
   };
 
+  // 3. SIGNUP FUNCTION
   const signup = async (userData) => {
     try {
-      const response = await api.post('/api/auth/signup', userData);
-      const { token, user } = response.data;
+      // Changed URL to match our Backend: /api/users
+      // Note: We send name, email, password, sport
+      const response = await axios.post('/api/users', userData);
       
+      const { token, ...newUserData } = response.data;
+      
+      // Save to storage
       localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify(newUserData));
+      
       setToken(token);
-      setUser(user);
-      toast.success('Account created successfully!');
+      setUser(newUserData);
+      
       return { success: true };
     } catch (error) {
-      toast.error(error.response?.data?.message || 'Signup failed');
-      return { success: false, error: error.response?.data?.message };
+      console.error("Signup Error:", error);
+      const message = error.response?.data?.message || 'Signup failed';
+      // toast.error(message);
+      return { success: false, error: message };
     }
   };
 
   const logout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     setToken(null);
     setUser(null);
-    toast.info('Logged out successfully');
+    // toast.info('Logged out successfully');
   };
 
   const updateUser = (updatedData) => {
-    setUser(prev => ({ ...prev, ...updatedData }));
+    setUser(prev => {
+      const newUser = { ...prev, ...updatedData };
+      localStorage.setItem('user', JSON.stringify(newUser));
+      return newUser;
+    });
   };
 
   return (
@@ -89,7 +103,7 @@ export const AuthProvider = ({ children }) => {
       updateUser,
       isAuthenticated: !!token
     }}>
-      {children}
+      {!loading && children}
     </AuthContext.Provider>
   );
 };

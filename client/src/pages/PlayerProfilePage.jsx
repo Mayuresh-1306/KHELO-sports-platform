@@ -1,4 +1,3 @@
-// client/src/pages/PlayerProfilePage.jsx
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FaTrophy, FaChartLine, FaCalendarAlt, FaMapMarkerAlt, FaEdit, FaTrash, FaShare, FaFlag, FaWeight, FaRuler } from 'react-icons/fa';
@@ -16,7 +15,6 @@ const PlayerProfilePage = () => {
   }, [id]);
 
   const fetchPlayerData = async () => {
-    // Mock data
     setPlayer({
       id: id || '1',
       name: 'Alex Johnson',
@@ -29,7 +27,7 @@ const PlayerProfilePage = () => {
       nationality: 'USA',
       team: 'Red Devils FC',
       rating: 4.8,
-      achievements: 15,
+      totalAchievements: 15, 
       matches: 42,
       goals: 28,
       assists: 12,
@@ -77,7 +75,6 @@ const PlayerProfilePage = () => {
 
   return (
     <div className="player-profile-page">
-      {/* Profile Header */}
       <div className="profile-header">
         <div className="profile-image">
           <div className="avatar-large">
@@ -101,7 +98,7 @@ const PlayerProfilePage = () => {
             <div className="stat">
               <FaTrophy />
               <div>
-                <h3>{player.achievements}</h3>
+                <h3>{player.totalAchievements}</h3>
                 <p>Achievements</p>
               </div>
             </div>
@@ -135,7 +132,6 @@ const PlayerProfilePage = () => {
         </div>
       </div>
 
-      {/* Tab Navigation */}
       <div className="profile-tabs">
         <button 
           className={`tab ${activeTab === 'overview' ? 'active' : ''}`}
@@ -163,7 +159,6 @@ const PlayerProfilePage = () => {
         </button>
       </div>
 
-      {/* Tab Content */}
       <div className="tab-content">
         {activeTab === 'overview' && (
           <div className="overview-content">
@@ -204,7 +199,6 @@ const PlayerProfilePage = () => {
             <div className="skills-radar">
               <h3>Skills Radar</h3>
               <div className="radar-chart">
-                {/* This would be a radar chart component */}
                 <div className="radar-placeholder">
                   {Object.entries(player.stats).map(([skill, value]) => (
                     <div key={skill} className="skill-bar">
