@@ -16,3 +16,16 @@ build/
 .vscode/
 .idea/
 .DS_Store
+
+# --- Dependencies ---
+# This ignores node_modules in root, server, AND client automatically
+node_modules/
+
+# --- Security ---
+# This ignores .env files everywhere
+.env
+.DS_Store
+
+# --- Build Output ---
+dist/
+build/
