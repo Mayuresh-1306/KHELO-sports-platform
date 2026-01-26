@@ -1,66 +1,124 @@
-# 🏆 KHELO - Multi-Sport Athlete Platform
+# KHELO Application
 
-![Status](https://img.shields.io/badge/Status-Beta-blue?style=for-the-badge)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
-![Tech Stack](https://img.shields.io/badge/Stack-MERN-purple?style=for-the-badge)
+Sports player profile management platform with modern UI.
 
-**KHELO** is a modern, full-stack sports platform designed to bridge the gap between athletes and opportunities. It serves as a centralized hub where players from various disciplines (Football, Cricket, Tennis, etc.) can build professional profiles, track performance statistics, manage official documents, and showcase their achievements to scouts and teams.
+## Deployment
 
----
+- **Frontend**: Deployed on Vercel
+- **Backend**: Deployed on Render
+- **Database**: MongoDB Atlas
 
-## ✨ Key Features
+See [deployment_guide.md](./deployment_guide.md) for detailed deployment instructions.
 
-### 👤 **Player Management**
-* **Dynamic Profiles:** Create and edit professional athlete profiles with physical stats and personal details.
-* **Multi-Sport Support:** Flexible architecture supporting distinct metrics for different sports (e.g., Goals for Football vs. Runs for Cricket).
-* **Achievement Portfolio:** dedicated section to showcase trophies, medals, and certifications with visual badges.
+## Local Development
 
-### 📊 **Analytics & Dashboard**
-* **Visual Statistics:** Interactive charts and graphs (using Chart.js) to visualize win rates, performance trends, and match history.
-* **Recent Activity:** Real-time feed of recent matches, updates, and profile views.
-* **Document Locker:** Securely upload and manage essential files like ID proofs and medical certificates.
+### Prerequisites
+- Node.js >= 18.0.0
+- MongoDB
+- npm or yarn
 
-### 🔐 **Security & Authentication**
-* **Secure Auth:** Robust Signup/Login system using JWT (JSON Web Tokens).
-* **Protected Routes:** Middleware to ensure only authenticated users can access sensitive dashboard data.
+### Setup
 
----
-
-## 🛠️ Tech Stack
-
-### **Frontend (Client)**
-* **Framework:** [React.js](https://reactjs.org/) (Vite) for lightning-fast performance.
-* **Styling:** Custom CSS with Glassmorphism design & responsive layouts.
-* **State Management:** React Context API (`AuthContext`, `SportContext`).
-* **Visualization:** Chart.js & React-Chartjs-2.
-* **Routing:** React Router DOM v6.
-* **HTTP Client:** Axios with Interceptors.
-
-### **Backend (Server)**
-* **Runtime:** Node.js.
-* **Framework:** Express.js (RESTful API architecture).
-* **Database:** MongoDB (NoSQL).
-* **Authentication:** JWT & Bcrypt for encryption.
-
----
-
-## 📂 Project Structure
-
+1. Clone the repository
 ```bash
+git clone <your-repo-url>
+cd KHELO
+```
+
+2. Install dependencies
+```bash
+# Install frontend dependencies
+cd client
+npm install
+
+# Install backend dependencies
+cd ../server
+npm install
+```
+
+3. Configure environment variables
+```bash
+# Frontend (.env in client folder)
+cp client/.env.example client/.env
+# Edit client/.env with your values
+
+# Backend (.env in server folder)
+cp server/.env.example server/.env
+# Edit server/.env with your values
+```
+
+4. Run development servers
+```bash
+# Terminal 1 - Frontend
+cd client
+npm run dev
+
+# Terminal 2 - Backend
+cd server
+npm run dev
+```
+
+5. Open http://localhost:5173
+
+## Tech Stack
+
+### Frontend
+- React 19
+- Vite
+- React Router
+- Axios
+- React Icons
+- Framer Motion
+- React Toastify
+
+### Backend
+- Node.js
+- Express
+- MongoDB/Mongoose
+- JWT Authentication
+- Cloudinary (image upload)
+- Bcrypt
+- Express Validator
+
+## Features
+
+- ✅ Player profile management
+- ✅ Achievement tracking with certificate upload
+- ✅ Modern UI with glassmorphism
+- ✅ Image upload with drag-and-drop
+- ✅ Responsive design
+- ✅ Authentication & authorization
+- ✅ Search and filter players
+
+## Project Structure
+
+```
 KHELO/
-├── client/                 # Frontend React Application
+├── client/                 # Frontend (React + Vite)
 │   ├── src/
-│   │   ├── components/     # Reusable UI (Auth, Dashboard, Player cards)
-│   │   ├── context/        # Global State Management
-│   │   ├── hooks/          # Custom React Hooks (useAuth, useSports)
-│   │   ├── pages/          # Main Views (Home, Dashboard, Profile, Search)
-│   │   ├── services/       # API Integration (Axios configuration)
-│   │   └── styles/         # Modular CSS files
-│   └── vite.config.js      # Vite Configuration
+│   │   ├── components/    # Reusable components
+│   │   ├── pages/         # Page components
+│   │   ├── styles/        # CSS files
+│   │   ├── context/       # React context
+│   │   └── App.jsx        # Main app component
+│   ├── public/            # Static assets
+│   └── package.json
 │
-├── server/                 # Backend Node.js Application
-│   ├── controllers/        # Business Logic
-│   ├── models/             # Database Schemas
-│   ├── routes/             # API Endpoints
-│   └── server.js           # Server Entry Point
-└── README.md               # Project Documentation
+├── server/                # Backend (Node.js + Express)
+│   ├── src/
+│   │   ├── config/       # Configuration files
+│   │   ├── controllers/  # Route controllers
+│   │   ├── models/       # Mongoose models
+│   │   ├── routes/       # API routes
+│   │   ├── middleware/   # Custom middleware
+│   │   ├── utils/        # Utility functions
+│   │   ├── app.js        # Express app
+│   │   └── server.js     # Server entry point
+│   └── package.json
+│
+└── render.yaml           # Render deployment config
+```
+
+## License
+
+MIT

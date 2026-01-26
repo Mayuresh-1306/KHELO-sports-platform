@@ -1,0 +1,319 @@
+/* client/src/styles/components/imageUpload.css */
+
+/* ==================== IMAGE UPLOAD ==================== */
+
+.image-upload-container {
+    width: 100%;
+}
+
+.upload-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--text-main);
+    font-size: 1rem;
+}
+
+.upload-dropzone {
+    border: 2px dashed var(--border);
+    border-radius: var(--radius-lg);
+    padding: 3rem 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    background: var(--card-bg);
+}
+
+.upload-dropzone:hover,
+.upload-dropzone.active {
+    border-color: var(--primary);
+    background: var(--card-hover);
+    transform: scale(1.02);
+}
+
+.upload-dropzone .upload-icon {
+    font-size: 3rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    transition: var(--transition-base);
+}
+
+.upload-dropzone:hover .upload-icon {
+    color: var(--primary);
+    transform: scale(1.1);
+}
+
+.upload-dropzone h4 {
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.upload-dropzone p {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+.upload-error {
+    color: var(--danger);
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* ==================== IMAGE PREVIEW ==================== */
+
+.image-preview-container {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--card-bg);
+    padding: 1rem;
+}
+
+.image-preview {
+    width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+    border-radius: var(--radius-md);
+    display: block;
+}
+
+.remove-image-btn {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: rgba(239, 68, 68, 0.9);
+    color: white;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    backdrop-filter: blur(10px);
+}
+
+.remove-image-btn:hover {
+    background: var(--danger);
+    transform: scale(1.1);
+}
+
+.change-image-btn {
+    margin-top: 1rem;
+    width: 100%;
+}
+
+/* ==================== FILE UPLOAD ==================== */
+
+.file-upload-container {
+    width: 100%;
+}
+
+.selected-files-list {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+}
+
+.selected-files-list h4 {
+    color: var(--text-main);
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem;
+    background: var(--dark-bg);
+    border-radius: var(--radius-md);
+    margin-bottom: 0.5rem;
+    transition: all var(--transition-base);
+}
+
+.file-item:hover {
+    background: var(--card-hover);
+    transform: translateX(4px);
+}
+
+.file-type-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.file-type-icon.pdf {
+    color: #ef4444;
+}
+
+.file-type-icon.image {
+    color: #4cc9f0;
+}
+
+.file-type-icon.word {
+    color: #2563eb;
+}
+
+.file-type-icon.excel {
+    color: #10b981;
+}
+
+.file-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.file-name {
+    color: var(--text-main);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.file-size {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+.remove-file-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-base);
+}
+
+.remove-file-btn:hover {
+    color: var(--danger);
+    background: rgba(239, 68, 68, 0.1);
+}
+
+/* ==================== IMAGE PREVIEW MODAL ==================== */
+
+.image-preview-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    overflow-y: auto;
+}
+
+.preview-modal-content {
+    background: var(--card-bg);
+    border-radius: var(--radius-xl);
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow: auto;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+}
+
+.preview-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--dark-bg);
+}
+
+.preview-modal-header h3 {
+    color: var(--text-main);
+    font-size: 1.25rem;
+    margin: 0;
+}
+
+.preview-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.preview-modal-body {
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: calc(90vh - 100px);
+    overflow: auto;
+}
+
+.preview-image {
+    max-width: 100%;
+    max-height: calc(90vh - 140px);
+    object-fit: contain;
+    border-radius: var(--radius-md);
+}
+
+/* Upload Progress */
+.upload-progress-container {
+    margin-top: 1rem;
+}
+
+.upload-progress-bar {
+    height: 8px;
+    background: var(--border);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    margin-top: 0.5rem;
+}
+
+.upload-progress-fill {
+    height: 100%;
+    background: var(--gradient-main);
+    transition: width 0.3s ease;
+    border-radius: var(--radius-full);
+}
+
+.upload-progress-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .upload-dropzone {
+        padding: 2rem 1rem;
+    }
+
+    .image-preview {
+        max-height: 300px;
+    }
+
+    .preview-modal-content {
+        max-width: 95vw;
+        max-height: 95vh;
+    }
+
+    .preview-modal-header {
+        padding: 1rem;
+    }
+
+    .preview-modal-body {
+        padding: 1rem;
+    }
+}

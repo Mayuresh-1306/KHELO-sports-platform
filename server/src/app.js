@@ -11,14 +11,45 @@ const profileRouter = require('./routes/profileRoutes');
 
 const app = express();
 
+// CORS Configuration for Production
+const allowedOrigins = [
+  'http://localhost:5173', // Local development
+  'http://localhost:3000', // Alternative local port
+  process.env.CLIENT_URL || 'http://localhost:5173' // Production URL from environment
+];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    // Allow requests with no origin (mobile apps, Postman, etc.)
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+
 // Middleware
-app.use(cors({ origin: 'http://localhost:5173', credentials: true })); // Adjust origin for your frontend
+app.use(cors(corsOptions));
 app.use(express.json({ limit: '10kb' }));
 app.use(cookieParser());
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
+
+// Health check endpoint for Render
+app.get('/api/health', (req, res) => {
+  res.status(200).json({
+    status: 'success',
+    message: 'Server is healthy',
+    timestamp: new Date().toISOString()
+  });
+});
 
 // Routes
 app.use('/api/users', userRouter);
@@ -37,7 +68,7 @@ app.use((err, req, res, next) => {
   res.status(err.statusCode).json({
     status: err.status,
     message: err.message,
-    stack: err.stack
+    stack: process.env.NODE_ENV === 'development' ? err.stack : undefined
   });
 });
 
