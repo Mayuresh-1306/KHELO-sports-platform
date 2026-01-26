@@ -1,0 +1,50 @@
+# KHELO Backend Environment Variables
+# Copy these to your Render Dashboard under Environment Variables
+
+# ====================
+# REQUIRED VARIABLES
+# ====================
+
+# Environment
+NODE_ENV=production
+
+# Server Port (Render uses 10000 by default)
+PORT=10000
+
+# Database - MongoDB Atlas
+DATABASE_URI=mongodb+srv://mayureshsarkale_db_user:Mayuresh%402006@khelo.1ggriqw.mongodb.net/khelo?retryWrites=true&w=majority&appName=Khelo
+
+# JWT Security
+JWT_SECRET=my-ultra-secure-and-long-secret-key-for-khelo-app-production-2024
+JWT_EXPIRES_IN=7d
+
+# Frontend URL (Update with your Vercel URL after deployment)
+CLIENT_URL=https://your-app.vercel.app
+
+# ====================
+# CLOUDINARY (Image Upload)
+# ====================
+# Get these from: https://cloudinary.com/console
+
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+
+# ====================
+# OPTIONAL - EMAIL (if using email features)
+# ====================
+
+EMAIL_FROM=noreply@khelo.com
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_USERNAME=your_email@gmail.com
+EMAIL_PASSWORD=your_gmail_app_password
+
+# ====================
+# NOTES FOR RENDER DEPLOYMENT
+# ====================
+# 1. Copy each variable above to Render Dashboard
+# 2. Don't include comments (#)
+# 3. Update CLIENT_URL after deploying frontend to Vercel
+# 4. If you don't have Cloudinary, sign up at cloudinary.com
+# 5. For Gmail app password: https://support.google.com/accounts/answer/185833
