@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import axios from 'axios';
+import api from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
 import { FaUser, FaEnvelope, FaLock } from 'react-icons/fa';
 import "../../styles/components/auth.css";
@@ -64,7 +64,7 @@ const Signup = () => {
         passwordConfirm: formData.passwordConfirm
       };
 
-      const response = await axios.post('/api/users', backendData);
+      const response = await api.post('/users', backendData);
 
       if (response.data.token) {
         localStorage.setItem('token', response.data.token);
