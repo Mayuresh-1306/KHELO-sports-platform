@@ -1,39 +1,36 @@
-// client/src/components/auth/Signup.jsx
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import axios from 'axios'; // We use axios directly to ensure it hits the right URL
-import { FaUser, FaEnvelope, FaLock, FaRunning } from 'react-icons/fa';
+import axios from 'axios';
+import { useAuth } from '../../context/AuthContext';
+import { FaUser, FaEnvelope, FaLock } from 'react-icons/fa';
 import "../../styles/components/auth.css";
 
 const Signup = () => {
-  // 1. Updated State to match YOUR Backend exactly
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
-    confirmPassword: '',
-    sport: 'Cricket' // Default sport
+    passwordConfirm: ''
   });
-  
+
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const navigate = useNavigate();
 
   const validateForm = () => {
     const newErrors = {};
-    
+
     if (!formData.name.trim()) newErrors.name = 'Name is required';
     if (!formData.email.trim()) newErrors.email = 'Email is required';
     else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Email is invalid';
-    
+
     if (!formData.password) newErrors.password = 'Password is required';
-    else if (formData.password.length < 6) newErrors.password = 'Password must be at least 6 characters';
-    
-    if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = 'Passwords do not match';
+    else if (formData.password.length < 8) newErrors.password = 'Password must be at least 8 characters';
+
+    if (formData.password !== formData.passwordConfirm) {
+      newErrors.passwordConfirm = 'Passwords do not match';
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -44,8 +41,7 @@ const Signup = () => {
       ...prev,
       [name]: value
     }));
-    
-    // Clear error when user starts typing
+
     if (errors[name]) {
       setErrors(prev => ({
         ...prev,
@@ -57,34 +53,30 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) return;
-    
+
     setIsSubmitting(true);
-    
+
     try {
-      // 2. FIXED: Send specific data the backend expects
       const backendData = {
         name: formData.name,
         email: formData.email,
         password: formData.password,
-        sport: formData.sport
+        passwordConfirm: formData.passwordConfirm
       };
 
-      // 3. FIXED URL: Points directly to your working backend route
       const response = await axios.post('/api/users', backendData);
 
       if (response.data.token) {
-        // Save token to keep user logged in
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('user', JSON.stringify(response.data));
-        
-        // Redirect to dashboard
-        navigate('/dashboard'); 
+
+        window.location.href = '/dashboard';
       }
 
     } catch (err) {
       console.error(err);
-      setErrors({ 
-        form: err.response?.data?.message || 'Signup failed. Please try again.' 
+      setErrors({
+        form: err.response?.data?.message || 'Signup failed. Please try again.'
       });
     } finally {
       setIsSubmitting(false);
@@ -104,7 +96,7 @@ const Signup = () => {
           <p>Join the KHELO sports community</p>
         </div>
 
-        {errors.form && <div className="error-message" style={{textAlign: 'center', marginBottom: '10px'}}>{errors.form}</div>}
+        {errors.form && <div className="error-message" style={{ textAlign: 'center', marginBottom: '10px' }}>{errors.form}</div>}
 
         <form onSubmit={handleSubmit} className="auth-form">
           {/* NAME FIELD */}
@@ -162,35 +154,16 @@ const Signup = () => {
               </div>
               <input
                 type="password"
-                name="confirmPassword"
+                name="passwordConfirm"
                 placeholder="Confirm Password"
-                value={formData.confirmPassword}
+                value={formData.passwordConfirm}
                 onChange={handleChange}
-                className={errors.confirmPassword ? 'error' : ''}
+                className={errors.passwordConfirm ? 'error' : ''}
               />
-              {errors.confirmPassword && (
-                <span className="error-message">{errors.confirmPassword}</span>
+              {errors.passwordConfirm && (
+                <span className="error-message">{errors.passwordConfirm}</span>
               )}
             </div>
-          </div>
-
-          {/* NEW SPORT FIELD (Required by Backend) */}
-          <div className="form-group">
-            <div className="input-icon">
-              <FaRunning />
-            </div>
-            <select
-              name="sport"
-              value={formData.sport}
-              onChange={handleChange}
-              style={{ width: '100%', padding: '10px 10px 10px 40px', border: '1px solid #ddd', borderRadius: '8px' }}
-            >
-              <option value="Cricket">Cricket</option>
-              <option value="Football">Football</option>
-              <option value="Basketball">Basketball</option>
-              <option value="Tennis">Tennis</option>
-              <option value="Badminton">Badminton</option>
-            </select>
           </div>
 
           <div className="terms-checkbox">

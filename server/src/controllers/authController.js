@@ -1,4 +1,4 @@
-const { promisify } = require('util'); // <--- ADDED THIS
+const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const catchAsync = require('../utils/catchAsync');
@@ -11,7 +11,7 @@ const signToken = id => {
 };
 
 exports.signup = catchAsync(async (req, res, next) => {
-  console.log("🔥 DATA RECEIVED (Signup):", req.body); 
+  console.log("🔥 DATA RECEIVED (Signup):", req.body);
 
   const newUser = await User.create({
     name: req.body.name,
@@ -50,9 +50,7 @@ exports.login = catchAsync(async (req, res, next) => {
   });
 });
 
-// --- THIS WAS MISSING BEFORE ---
 exports.protect = catchAsync(async (req, res, next) => {
-  // 1. Get token and check if it's there
   let token;
   if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
     token = req.headers.authorization.split(' ')[1];
@@ -62,16 +60,13 @@ exports.protect = catchAsync(async (req, res, next) => {
     return next(new AppError('You are not logged in! Please log in to get access.', 401));
   }
 
-  // 2. Verification token
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
 
-  // 3. Check if user still exists
   const currentUser = await User.findById(decoded.id);
   if (!currentUser) {
     return next(new AppError('The user belonging to this token no longer does exist.', 401));
   }
 
-  // 4. Grant Access
   req.user = currentUser;
   next();
 });

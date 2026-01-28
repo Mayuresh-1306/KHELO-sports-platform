@@ -1,8 +1,7 @@
-// client/src/components/auth/Login.jsx
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import axios from 'axios'; // We use axios directly to guarantee the right URL
+import axios from 'axios';
 import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
 import "../../styles/components/auth.css";
 
@@ -15,7 +14,7 @@ const Login = () => {
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  
+
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || '/dashboard';
@@ -34,44 +33,40 @@ const Login = () => {
       ...prev,
       [name]: type === 'checkbox' ? checked : value
     }));
-    
+
     if (errors[name]) setErrors(prev => ({ ...prev, [name]: '' }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) return;
-    
+
     setIsSubmitting(true);
-    setErrors({}); // Clear previous errors
+    setErrors({});
 
     try {
-      // 1. FIXED URL: Points directly to your working backend login route
       const response = await axios.post('/api/users/login', {
         email: formData.email,
         password: formData.password
       });
 
-      // 2. SUCCESS: Save token and redirect
       if (response.data.token) {
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('user', JSON.stringify(response.data));
-        
-        // Handle "Remember Me"
+
         if (formData.rememberMe) {
           localStorage.setItem('rememberEmail', formData.email);
         } else {
           localStorage.removeItem('rememberEmail');
         }
 
-        navigate(from, { replace: true });
+        window.location.href = from;
       }
 
     } catch (err) {
       console.error(err);
-      // Show error from backend (e.g., "Invalid email or password")
-      setErrors({ 
-        form: err.response?.data?.message || 'Login failed. Please checks your credentials.' 
+      setErrors({
+        form: err.response?.data?.message || 'Login failed. Please checks your credentials.'
       });
     } finally {
       setIsSubmitting(false);
@@ -93,7 +88,7 @@ const Login = () => {
 
         {/* Global Form Error Message */}
         {errors.form && (
-          <div className="error-message" style={{textAlign: 'center', marginBottom: '15px', padding: '10px', background: '#ffebee', borderRadius: '4px'}}>
+          <div className="error-message" style={{ textAlign: 'center', marginBottom: '15px', padding: '10px', background: '#ffebee', borderRadius: '4px' }}>
             {errors.form}
           </div>
         )}
