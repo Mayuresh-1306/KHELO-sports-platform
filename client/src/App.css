@@ -283,8 +283,11 @@ body {
   animation: slideUp var(--transition) ease;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
+  .app-container {
+    padding-top: 60px;
+  }
+
   .main-layout {
     flex-direction: column;
   }
@@ -297,5 +300,38 @@ body {
   .grid-3,
   .grid-4 {
     grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+  }
+
+  .btn {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-container {
+    padding-top: 60px;
+  }
+
+  .content-wrapper {
+    padding: 0.75rem;
+  }
+
+  .card {
+    padding: 0.875rem;
+    border-radius: var(--radius);
+  }
+
+  .btn {
+    width: 100%;
+    padding: 0.875rem;
   }
 }

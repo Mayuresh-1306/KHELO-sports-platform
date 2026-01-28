@@ -16,6 +16,7 @@ import {
   FaChartLine
 } from 'react-icons/fa';
 import "../../styles/components/navbar.css";
+import "../../styles/components/navbar-mobile.css";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -122,7 +123,7 @@ const Navbar = () => {
               <span className="mobile-nav-text">{link.label}</span>
             </Link>
           ))}
-          
+
           {isAuthenticated ? (
             <>
               <Link
