@@ -15,7 +15,9 @@ const app = express();
 const allowedOrigins = [
   'http://localhost:5173', // Local development
   'http://localhost:3000', // Alternative local port
-  process.env.CLIENT_URL || 'http://localhost:5173' // Production URL from environment
+  process.env.CLIENT_URL || 'http://localhost:5173', // Production URL from environment
+  'https://stayzz-backend.onrender.com',
+  'https://khelo-sports-platform.vercel.app'
 ];
 
 const corsOptions = {
