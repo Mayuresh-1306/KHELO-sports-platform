@@ -48,6 +48,7 @@ const DashboardPage = () => {
 
   return (
     <div className="dashboard-page">
+      {/* Mobile Toggle Button */}
       <button 
         className="mobile-menu-btn"
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
@@ -55,12 +56,14 @@ const DashboardPage = () => {
         {isSidebarOpen ? <FaTimes /> : <FaBars />}
       </button>
 
+      {/* Dashboard Header */}
       <div className="dashboard-header">
         <h1>Welcome back, {user?.name || 'Athlete'}!</h1>
         <p>Here's what's happening with your player profiles</p>
       </div>
 
       <div className="dashboard-grid">
+        {/* Sidebar */}
         <div className={`dashboard-sidebar ${isSidebarOpen ? 'open' : ''}`}>
           <div className="user-profile">
             <div className="profile-avatar">
@@ -104,8 +107,10 @@ const DashboardPage = () => {
           </ul>
         </div>
 
+        {/* Overlay to close menu when clicking outside */}
         {isSidebarOpen && <div className="sidebar-overlay" onClick={() => setIsSidebarOpen(false)}></div>}
 
+        {/* Main Content */}
         <div className="dashboard-main">
           <div className="dashboard-quick-stats">
             <div className="quick-stat-card">

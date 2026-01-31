@@ -38,6 +38,7 @@
   margin-right: 20px;
 }
 
+/* Default Desktop Grid */
 .dashboard-grid {
   display: grid;
   grid-template-columns: 250px 1fr;
@@ -185,4 +186,89 @@
 .activity-time {
   font-size: 12px;
   color: #999;
+}
+
+/* ---------------------------------------------------- */
+/* MOBILE RESPONSIVE STYLES (Added to fix your issue)  */
+/* ---------------------------------------------------- */
+
+.mobile-menu-btn {
+  display: none; /* Hidden on desktop */
+}
+
+@media screen and (max-width: 768px) {
+  
+  /* 1. Disable Grid Layout on Mobile */
+  .dashboard-grid {
+    display: flex !important;
+    flex-direction: column;
+  }
+
+  /* 2. Hide Sidebar Off-Screen */
+  .dashboard-sidebar {
+    position: fixed !important;
+    top: 0;
+    left: -100%; /* Completely hidden to the left */
+    width: 280px !important;
+    height: 100vh !important;
+    background: white;
+    z-index: 5000;
+    transition: left 0.3s ease-in-out;
+    box-shadow: none;
+    overflow-y: auto;
+  }
+
+  /* 3. Show Sidebar when 'open' class is added */
+  .dashboard-sidebar.open {
+    left: 0 !important; /* Slide in */
+    box-shadow: 10px 0 30px rgba(0,0,0,0.2);
+  }
+
+  /* 4. Show the Floating Button */
+  .mobile-menu-btn {
+    display: flex !important;
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: #6c63ff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    z-index: 9999;
+    box-shadow: 0 4px 15px rgba(108, 99, 255, 0.4);
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* 5. Dark Overlay behind sidebar */
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.6);
+    z-index: 4000;
+    backdrop-filter: blur(2px);
+  }
+
+  /* 6. Adjust Content Spacing */
+  .dashboard-main {
+    padding: 15px !important;
+    padding-bottom: 100px !important; /* Space for button */
+  }
+  
+  /* 7. Stack Stats Cards (2 per row) */
+  .dashboard-quick-stats {
+    grid-template-columns: 1fr 1fr !important; 
+    gap: 15px !important;
+  }
+  
+  .dashboard-header h1 {
+    font-size: 1.5rem;
+  }
 }
