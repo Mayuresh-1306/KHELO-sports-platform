@@ -56,14 +56,8 @@ const DashboardPage = () => {
         {isSidebarOpen ? <FaTimes /> : <FaBars />}
       </button>
 
-      {/* Dashboard Header */}
-      <div className="dashboard-header">
-        <h1>Welcome back, {user?.name || 'Athlete'}!</h1>
-        <p>Here's what's happening with your player profiles</p>
-      </div>
-
       <div className="dashboard-grid">
-        {/* Sidebar */}
+        {/* === SIDEBAR === */}
         <div className={`dashboard-sidebar ${isSidebarOpen ? 'open' : ''}`}>
           <div className="user-profile">
             <div className="profile-avatar">
@@ -107,11 +101,18 @@ const DashboardPage = () => {
           </ul>
         </div>
 
-        {/* Overlay to close menu when clicking outside */}
+        {/* Overlay for Mobile */}
         {isSidebarOpen && <div className="sidebar-overlay" onClick={() => setIsSidebarOpen(false)}></div>}
 
-        {/* Main Content */}
+        {/* === MAIN CONTENT === */}
         <div className="dashboard-main">
+          {/* Header Moved INSIDE Main Content for proper alignment */}
+          <div className="dashboard-header">
+            <h1>Welcome back, {user?.name || 'Athlete'}!</h1>
+            <p>Here's what's happening with your player profiles</p>
+          </div>
+
+          {/* Quick Stats */}
           <div className="dashboard-quick-stats">
             <div className="quick-stat-card">
               <div className="stat-icon players"><FaUsers /></div>
@@ -143,6 +144,7 @@ const DashboardPage = () => {
             </div>
           </div>
 
+          {/* Activity Feed */}
           <div className="dashboard-section activity-feed">
             <div className="section-header">
               <h2>Recent Activity</h2>

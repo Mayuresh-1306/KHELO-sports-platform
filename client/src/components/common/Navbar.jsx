@@ -1,8 +1,7 @@
-// client/src/components/common/Navbar.jsx
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   FaHome,
   FaUser,
@@ -32,28 +31,26 @@ const Navbar = () => {
   const navLinks = [
     { to: '/', label: 'Home', icon: <FaHome /> },
     { to: '/dashboard', label: 'Dashboard', icon: <FaChartLine /> },
-    { to: '/search', label: 'Search Players', icon: <FaSearch /> },
-    { to: '/create-profile', label: 'Create Profile', icon: <FaPlus /> },
-    { to: '/documents', label: 'Documents', icon: <FaFileAlt /> },
-    { to: '/achievements', label: 'Achievements', icon: <FaTrophy /> },
+    { to: '/search', label: 'Players', icon: <FaSearch /> },
+    { to: '/create-profile', label: 'Create', icon: <FaPlus /> },
+    { to: '/documents', label: 'Docs', icon: <FaFileAlt /> },
+    { to: '/achievements', label: 'Awards', icon: <FaTrophy /> },
   ];
 
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        {/* Logo */}
         <Link to="/" className="navbar-logo">
           <motion.div
             className="logo-icon"
-            whileHover={{ rotate: 360 }}
+            whileHover={{ rotate: 360, scale: 1.1 }}
             transition={{ duration: 0.5 }}
           >
             <FaTrophy />
           </motion.div>
-          <span className="logo-text">Player<span className="logo-highlight">Profile</span></span>
+          <span className="logo-text">KHELO<span className="logo-highlight">SPORTS</span></span>
         </Link>
 
-        {/* Desktop Navigation */}
         <div className="nav-menu">
           {navLinks.map((link) => (
             <Link
@@ -62,13 +59,11 @@ const Navbar = () => {
               className="nav-link"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              <span className="nav-icon">{link.icon}</span>
               <span className="nav-text">{link.label}</span>
             </Link>
           ))}
         </div>
 
-        {/* User Section */}
         <div className="nav-user-section">
           {isAuthenticated ? (
             <div className="user-menu">
@@ -76,11 +71,10 @@ const Navbar = () => {
                 <div className="user-avatar">
                   {user?.name?.charAt(0).toUpperCase()}
                 </div>
-                <span className="user-name">{user?.name}</span>
+                <span className="user-name">{user?.name?.split(' ')[0]}</span>
               </Link>
               <button onClick={handleLogout} className="logout-button">
                 <FaSignOutAlt />
-                <span>Logout</span>
               </button>
             </div>
           ) : (
@@ -94,7 +88,6 @@ const Navbar = () => {
             </div>
           )}
 
-          {/* Mobile Menu Toggle */}
           <button
             className="mobile-menu-toggle"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -104,64 +97,66 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <motion.div
-          className="mobile-menu"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-        >
-          {navLinks.map((link) => (
-            <Link
-              key={link.to}
-              to={link.to}
-              className="mobile-nav-link"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              <span className="mobile-nav-icon">{link.icon}</span>
-              <span className="mobile-nav-text">{link.label}</span>
-            </Link>
-          ))}
-
-          {isAuthenticated ? (
-            <>
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            className="mobile-menu"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            {navLinks.map((link) => (
               <Link
-                to={`/profile/${user?._id}`}
+                key={link.to}
+                to={link.to}
                 className="mobile-nav-link"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                <span className="mobile-nav-icon"><FaUser /></span>
-                <span className="mobile-nav-text">My Profile</span>
+                <span className="mobile-nav-icon">{link.icon}</span>
+                <span className="mobile-nav-text">{link.label}</span>
               </Link>
-              <button
-                onClick={handleLogout}
-                className="mobile-logout-button"
-              >
-                <FaSignOutAlt />
-                <span>Logout</span>
-              </button>
-            </>
-          ) : (
-            <div className="mobile-auth-buttons">
-              <Link
-                to="/login"
-                className="btn btn-outline"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Sign In
-              </Link>
-              <Link
-                to="/signup"
-                className="btn btn-primary"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Sign Up
-              </Link>
-            </div>
-          )}
-        </motion.div>
-      )}
+            ))}
+
+            {isAuthenticated ? (
+              <>
+                <Link
+                  to={`/profile/${user?._id}`}
+                  className="mobile-nav-link"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <span className="mobile-nav-icon"><FaUser /></span>
+                  <span className="mobile-nav-text">My Profile</span>
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className="mobile-logout-button"
+                >
+                  <FaSignOutAlt />
+                  <span>Logout</span>
+                </button>
+              </>
+            ) : (
+              <div className="mobile-auth-buttons">
+                <Link
+                  to="/login"
+                  className="btn btn-outline"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Sign In
+                </Link>
+                <Link
+                  to="/signup"
+                  className="btn btn-primary"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Sign Up
+                </Link>
+              </div>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };

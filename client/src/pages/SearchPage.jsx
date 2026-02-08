@@ -1,7 +1,8 @@
 // client/src/pages/SearchPage.jsx
 import React, { useState, useEffect } from 'react';
 import { FaSearch, FaFilter, FaTimes, FaUser, FaTrophy, FaChartLine } from 'react-icons/fa';
-import PlayerCard from '../components/player/PlayerCard';
+// 1. CHANGED: Import the new Flip Card
+import PlayerFlipCard from '../components/common/TEMP_CARD';
 import "../styles/pages/search.css";
 
 const SearchPage = () => {
@@ -28,17 +29,17 @@ const SearchPage = () => {
 
   const fetchPlayers = async () => {
     setLoading(true);
-    // Mock data
+    // Mock data - Kept exactly as you had it
     setTimeout(() => {
       const mockPlayers = [
-        { id: 1, name: 'Alex Johnson', sports: ['Football', 'Basketball'], age: 24, position: 'Forward', rating: 4.8, achievements: 15 },
-        { id: 2, name: 'Sarah Williams', sports: ['Tennis', 'Badminton'], age: 22, position: 'Singles Player', rating: 4.9, achievements: 12 },
-        { id: 3, name: 'Michael Chen', sports: ['Swimming', 'Athletics'], age: 26, position: 'Sprinter', rating: 4.7, achievements: 18 },
-        { id: 4, name: 'David Miller', sports: ['Cricket', 'Football'], age: 28, position: 'Batsman', rating: 4.6, achievements: 20 },
-        { id: 5, name: 'Emma Wilson', sports: ['Basketball', 'Volleyball'], age: 23, position: 'Center', rating: 4.8, achievements: 14 },
-        { id: 6, name: 'James Brown', sports: ['Football', 'Rugby'], age: 25, position: 'Midfielder', rating: 4.5, achievements: 10 },
-        { id: 7, name: 'Lisa Taylor', sports: ['Tennis', 'Squash'], age: 21, position: 'Doubles Player', rating: 4.7, achievements: 11 },
-        { id: 8, name: 'Robert Garcia', sports: ['Baseball', 'Cricket'], age: 27, position: 'Pitcher', rating: 4.4, achievements: 9 },
+        { id: 1, name: 'Alex Johnson', sports: ['Football', 'Basketball'], age: 24, position: 'Forward', rating: 4.8, achievements: 15, location: 'London, UK' },
+        { id: 2, name: 'Sarah Williams', sports: ['Tennis', 'Badminton'], age: 22, position: 'Singles Player', rating: 4.9, achievements: 12, location: 'New York, USA' },
+        { id: 3, name: 'Michael Chen', sports: ['Swimming', 'Athletics'], age: 26, position: 'Sprinter', rating: 4.7, achievements: 18, location: 'Sydney, AUS' },
+        { id: 4, name: 'David Miller', sports: ['Cricket', 'Football'], age: 28, position: 'Batsman', rating: 4.6, achievements: 20, location: 'Mumbai, IND' },
+        { id: 5, name: 'Emma Wilson', sports: ['Basketball', 'Volleyball'], age: 23, position: 'Center', rating: 4.8, achievements: 14, location: 'Toronto, CAN' },
+        { id: 6, name: 'James Brown', sports: ['Football', 'Rugby'], age: 25, position: 'Midfielder', rating: 4.5, achievements: 10, location: 'Manchester, UK' },
+        { id: 7, name: 'Lisa Taylor', sports: ['Tennis', 'Squash'], age: 21, position: 'Doubles Player', rating: 4.7, achievements: 11, location: 'Paris, FRA' },
+        { id: 8, name: 'Robert Garcia', sports: ['Baseball', 'Cricket'], age: 27, position: 'Pitcher', rating: 4.4, achievements: 9, location: 'Madrid, ESP' },
       ];
       setPlayers(mockPlayers);
       setFilteredPlayers(mockPlayers);
@@ -228,6 +229,8 @@ const SearchPage = () => {
            `All Players (${players.length})` : 
            `Search Results (${filteredPlayers.length} of ${players.length})`}
         </h3>
+        
+        {/* Active Filters Display - KEPT INTACT */}
         {(searchQuery || Object.values(filters).some(f => f)) && (
           <div className="active-filters">
             {searchQuery && (
@@ -247,7 +250,7 @@ const SearchPage = () => {
         )}
       </div>
 
-      {/* Players Grid */}
+      {/* Players Grid - UPDATED TO USE FLIP CARD */}
       {loading ? (
         <div className="loading-container">
           <div className="loading-spinner"></div>
@@ -256,7 +259,8 @@ const SearchPage = () => {
       ) : filteredPlayers.length > 0 ? (
         <div className="players-grid">
           {filteredPlayers.map(player => (
-            <PlayerCard key={player.id} player={player} />
+            // 2. CHANGED: Using the new PlayerFlipCard component
+            <PlayerFlipCard key={player.id} player={player} />
           ))}
         </div>
       ) : (
@@ -272,7 +276,7 @@ const SearchPage = () => {
         </div>
       )}
 
-      {/* Search Stats */}
+      {/* Search Stats - KEPT INTACT */}
       {!loading && filteredPlayers.length > 0 && (
         <div className="search-stats">
           <div className="stat-card">
