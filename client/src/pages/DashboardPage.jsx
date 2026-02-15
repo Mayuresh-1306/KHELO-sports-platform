@@ -34,6 +34,7 @@ const DashboardPage = () => {
   };
 
   const fetchDashboardData = async () => {
+    // Keep your existing data fetching logic
     setStats({
       totalPlayers: 42,
       totalAchievements: 18,
@@ -57,14 +58,17 @@ const DashboardPage = () => {
       </button>
 
       <div className="dashboard-grid">
+        
         {/* === SIDEBAR === */}
         <div className={`dashboard-sidebar ${isSidebarOpen ? 'open' : ''}`}>
           <div className="user-profile">
             <div className="profile-avatar">
               {user?.name?.charAt(0).toUpperCase() || <FaUser />}
             </div>
-            <h3>{user?.name || 'Athlete'}</h3>
-            <p>{user?.email || 'player@example.com'}</p>
+            <div className="profile-info">
+                <h3>{user?.name || 'Athlete'}</h3>
+                <p>{user?.email || 'player@example.com'}</p>
+            </div>
           </div>
 
           <ul className="sidebar-menu">
@@ -74,7 +78,7 @@ const DashboardPage = () => {
                 </Link>
             </li>
             <li>
-                <Link to="/profile/1" onClick={() => setIsSidebarOpen(false)}>
+                <Link to={`/profile/${user?._id || 'me'}`} onClick={() => setIsSidebarOpen(false)}>
                     <FaUser /> My Profile
                 </Link>
             </li>
@@ -93,8 +97,8 @@ const DashboardPage = () => {
                     <FaMedal /> Achievements
                 </Link>
             </li>
-            <li onClick={handleLogout} style={{cursor: 'pointer', marginTop: '20px', color: '#ff6b6b'}}>
-                <span style={{display:'flex', alignItems:'center', gap:'10px', padding:'10px 15px'}}>
+            <li onClick={handleLogout} style={{cursor: 'pointer', marginTop: 'auto', color: 'var(--danger)'}}>
+                <span style={{display:'flex', alignItems:'center', gap:'10px', padding:'12px 0'}}>
                     <FaSignOutAlt /> Logout
                 </span>
             </li>
@@ -106,19 +110,20 @@ const DashboardPage = () => {
 
         {/* === MAIN CONTENT === */}
         <div className="dashboard-main">
-          {/* Header Moved INSIDE Main Content for proper alignment */}
+          
+          {/* Header Moved INSIDE Main Content to fix layout */}
           <div className="dashboard-header">
-            <h1>Welcome back, {user?.name || 'Athlete'}!</h1>
-            <p>Here's what's happening with your player profiles</p>
+            <h1>Welcome back, <span className="text-highlight">{user?.name?.split(' ')[0] || 'Athlete'}</span>!</h1>
+            <p>Here is what's happening with your career today.</p>
           </div>
 
-          {/* Quick Stats */}
+          {/* Quick Stats Grid */}
           <div className="dashboard-quick-stats">
             <div className="quick-stat-card">
               <div className="stat-icon players"><FaUsers /></div>
               <div className="stat-content">
                 <h3>{stats.totalPlayers}</h3>
-                <p>Players</p>
+                <p>Network</p>
               </div>
             </div>
             <div className="quick-stat-card">
@@ -139,31 +144,31 @@ const DashboardPage = () => {
               <div className="stat-icon documents"><FaFileAlt /></div>
               <div className="stat-content">
                 <h3>{stats.pendingDocuments}</h3>
-                <p>Docs</p>
+                <p>Documents</p>
               </div>
             </div>
           </div>
 
           {/* Activity Feed */}
-          <div className="dashboard-section activity-feed">
+          <div className="dashboard-section">
             <div className="section-header">
               <h2>Recent Activity</h2>
             </div>
             <div className="activity-list">
                 {recentActivity.map(activity => (
                 <div key={activity.id} className="activity-item">
-                    <div className={`activity-icon ${activity.type}`}>
-                    {activity.type === 'added' && <FaUsers />}
-                    {activity.type === 'updated' && <FaChartLine />}
+                    <div className="activity-icon">
+                      {activity.type === 'added' ? <FaUsers /> : <FaChartLine />}
                     </div>
                     <div className="activity-content">
-                    <p>{activity.text}</p>
-                    <span className="activity-time">{activity.time}</span>
+                      <p>{activity.text}</p>
+                      <span className="activity-time">{activity.time}</span>
                     </div>
                 </div>
                 ))}
             </div>
           </div>
+
         </div>
       </div>
     </div>

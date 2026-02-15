@@ -1,103 +1,159 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FaArrowRight, FaChartLine, FaUsers, FaTrophy, FaMobileAlt, FaShieldAlt, FaBolt } from 'react-icons/fa';
 import '../styles/pages/home.css';
 
 const HomePage = () => {
   return (
     <div className="home-page">
-      {/* Hero Section */}
+      
+      {/* === HERO SECTION === */}
       <section className="hero-section">
-        <div className="hero-content">
-          <h1 className="hero-title">
-            <span className="gradient-text">KHELO</span>
-            <br />
-            Showcase Your Multi-Sport Talent
-          </h1>
-          <p className="hero-subtitle">
-            Create professional player profiles, track statistics, and connect with teams across multiple sports
-          </p>
-          <div className="hero-actions">
-            <Link to="/register" className="btn btn-primary btn-lg">
-              Get Started Free
-            </Link>
-            <Link to="/login" className="btn btn-outline btn-lg">
-              Sign In
-            </Link>
-          </div>
-        </div>
-        
-        <div className="hero-image">
-          <div className="floating-card">
-            <div className="player-avatar-lg">
-              <div className="avatar-badge">🏆</div>
+        {/* Glow Effect */}
+        <div className="hero-glow"></div>
+
+        <div className="hero-container">
+          <div className="hero-content animate-fadeInUp">
+            <div className="badge-pill">
+              <span className="badge-dot"></span>
+              v2.0 is now live
             </div>
-            <div className="player-stats-preview">
+            
+            <h1 className="hero-title">
+              The Operating System for <br />
+              <span className="text-gradient">Modern Athletes</span>
+            </h1>
+            
+            <p className="hero-subtitle">
+              Build your digital athletic passport. Track professional statistics, 
+              showcase verified achievements, and connect with scouts globally.
+            </p>
+            
+            <div className="hero-actions">
+              <Link to="/create-profile" className="btn btn-primary">
+                Start for Free <FaArrowRight />
+              </Link>
+              <Link to="/search" className="btn btn-outline">
+                Explore Talent
+              </Link>
+            </div>
+
+            <div className="hero-stats-row">
               <div className="stat-item">
-                <span className="stat-value">15</span>
-                <span className="stat-label">Matches</span>
+                <strong>10k+</strong> <span>Athletes</span>
               </div>
+              <div className="stat-separator"></div>
               <div className="stat-item">
-                <span className="stat-value">24</span>
-                <span className="stat-label">Goals</span>
+                <strong>500+</strong> <span>Teams</span>
               </div>
+              <div className="stat-separator"></div>
               <div className="stat-item">
-                <span className="stat-value">92%</span>
-                <span className="stat-label">Success</span>
+                <strong>98%</strong> <span>Success Rate</span>
               </div>
+            </div>
+          </div>
+
+          {/* Hero Visual */}
+          <div className="hero-visual animate-slideInRight">
+            <div className="glass-card-profile">
+              <div className="card-header">
+                <div className="card-avatar">VK</div>
+                <div className="card-info">
+                  <h4>Virat Kohli</h4>
+                  <p>Cricket • Batsman</p>
+                </div>
+                <div className="card-rank">TOP 1%</div>
+              </div>
+              
+              <div className="card-stats-grid">
+                <div className="mini-stat">
+                  <span className="label">Matches</span>
+                  <span className="value">254</span>
+                </div>
+                <div className="mini-stat">
+                  <span className="label">Average</span>
+                  <span className="value">58.9</span>
+                </div>
+                <div className="mini-stat">
+                  <span className="label">Strike Rate</span>
+                  <span className="value">138.5</span>
+                </div>
+              </div>
+
+              <div className="card-chart-placeholder">
+                <div className="chart-bar" style={{height: '40%'}}></div>
+                <div className="chart-bar" style={{height: '70%'}}></div>
+                <div className="chart-bar" style={{height: '50%'}}></div>
+                <div className="chart-bar" style={{height: '100%'}}></div>
+                <div className="chart-bar" style={{height: '80%'}}></div>
+              </div>
+            </div>
+            
+            <div className="floating-badge badge-1">
+              <FaTrophy className="icon-gold" /> <span>MVP 2024</span>
+            </div>
+            <div className="floating-badge badge-2">
+              <FaBolt className="icon-blue" /> <span>Trending</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* === FEATURES SECTION === */}
       <section className="features-section">
         <div className="section-header">
-          <h2 className="section-title">Why Choose KHELO?</h2>
-          <p className="section-subtitle">Everything you need to elevate your athletic career</p>
+          <h2>Everything you need to <span className="text-highlight">go pro</span></h2>
+          <p>Powerful tools designed for serious athletes and scouts.</p>
         </div>
-        
+
         <div className="features-grid">
-          <div className="feature-card">
-            <div className="feature-icon">📊</div>
+          <div className="feature-card card-large">
+            <div className="feature-icon-wrapper"><FaChartLine /></div>
             <h3>Advanced Analytics</h3>
-            <p>Track performance metrics with detailed insights and visual reports</p>
+            <p>Visualize your performance growth with professional grade charts and historical data comparison.</p>
           </div>
-          
+
           <div className="feature-card">
-            <div className="feature-icon">👥</div>
+            <div className="feature-icon-wrapper"><FaUsers /></div>
             <h3>Team Connections</h3>
-            <p>Connect with scouts and teams across different sports disciplines</p>
+            <p>Direct networking channels with verified scouts and club managers.</p>
           </div>
-          
+
           <div className="feature-card">
-            <div className="feature-icon">🏆</div>
-            <h3>Achievement Portfolio</h3>
-            <p>Showcase your accomplishments with verified digital badges</p>
+            <div className="feature-icon-wrapper"><FaShieldAlt /></div>
+            <h3>Verified Data</h3>
+            <p>Blockchain-backed achievement verification for absolute trust.</p>
           </div>
-          
+
           <div className="feature-card">
-            <div className="feature-icon">📱</div>
-            <h3>Mobile Ready</h3>
-            <p>Access your profile and stats anytime, anywhere on any device</p>
+            <div className="feature-icon-wrapper"><FaTrophy /></div>
+            <h3>Digital Trophy Cabinet</h3>
+            <p>Showcase awards, certificates, and media in high resolution.</p>
+          </div>
+
+          <div className="feature-card card-wide">
+            <div className="feature-content">
+              <div className="feature-icon-wrapper"><FaMobileAlt /></div>
+              <h3>Mobile First Design</h3>
+              <p>Update your stats from the sideline. Fully optimized for all devices.</p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="cta-section bg-gradient-primary">
-        <div className="cta-content">
-          <h2>Ready to Elevate Your Game?</h2>
-          <p>Join thousands of athletes who trust KHELO for their professional journey</p>
-          <div className="cta-actions">
-            <Link to="/register" className="btn btn-white btn-lg">
-              Create Your Profile
-            </Link>
-            <Link to="/search" className="btn btn-transparent btn-lg">
-              Search Players
+      {/* === CTA SECTION === */}
+      <section className="cta-section">
+        <div className="cta-container">
+          <div className="cta-content">
+            <h2>Ready to define your legacy?</h2>
+            <p>Join the fastest growing sports network today.</p>
+            <Link to="/register" className="btn btn-white">
+              Create Free Profile
             </Link>
           </div>
         </div>
       </section>
+
     </div>
   );
 };
